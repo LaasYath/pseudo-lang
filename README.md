@@ -25,6 +25,12 @@ This project will include an IDE mobile application that will exectue the progra
 Additionally, there will be a seperate, closable window to display the output. Users can toggle the code and output windows off and on depending on their preference.
 
 ## Architecture
+Front End:
+  - Shell: the closable window where the user can type in their pseudocode
+  - Console: the closable output window where the user is able to see their executed code
+  - Run Button: on press, activates interpretation and execution of the code written in the shell
+Back End:
+  - 
 
 ## Contributors
 - Adya Bharadwaj
