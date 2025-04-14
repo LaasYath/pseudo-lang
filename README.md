@@ -29,9 +29,9 @@ Front End:
   - Shell Screen: the closable window where the user can type in their pseudocode
   - Console Screen: the closable output window where the user is able to see their executed code
   - Run Button: on press, activates interpretation and execution of the code written in the shell
-  - Sign up (popup, multifactor authentication) and Login screen.
-  - Projects page (sidebar)
-  - Open project, Create project, remove project options.
+  - Sign up (popup, multifactor authentication) and Login screen for different users
+  - Projects sidebar:
+      - Open project, Create project, remove project options.
     
 Back End:
   - Keyword Identifier Module: identifies the keywords that the user types in, such as "delimeter" or "for loop"
