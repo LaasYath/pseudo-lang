@@ -1,4 +1,4 @@
-# pseudo-lang
+# pseudocode-lang
 Pseudocode based programming language to make coding easier.
 
 ## Goals
@@ -43,6 +43,8 @@ Back End:
   - Execute Function: executes the user's interpreted pseudocode and displays output in the Console Screen
 
 [Information Architecture Diagram](https://drive.google.com/file/d/1d2IKkDyWzLPYZAHCXZtWIXqcXWp2qCur/view?usp=sharing)
+
+[Building a Programming Language Research Notes](https://docs.google.com/document/d/1SLT90jQl-iRvA23UEoeeupDzGcabtjoO18C-yLMwea4/edit?usp=sharing)
 
 ## Contributors
 - Adya Bharadwaj
