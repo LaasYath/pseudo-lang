@@ -39,7 +39,7 @@ Back End:
       - Evaulator: interprets the abstract syntax tree
   - Execute Function: executes the user's interpreted pseudocode and displays output in the Console Screen
 
-![Information architecture diagram](C:\Users\s304434\Pictures\informationArchitecture.png)
+[Information Architecture Diagram](https://drive.google.com/file/d/1d2IKkDyWzLPYZAHCXZtWIXqcXWp2qCur/view?usp=sharing)
 
 ## Contributors
 - Adya Bharadwaj
