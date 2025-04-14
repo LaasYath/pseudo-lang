@@ -29,6 +29,7 @@ Front End:
   - Shell Screen: the closable window where the user can type in their pseudocode
   - Console Screen: the closable output window where the user is able to see their executed code
   - Run Button: on press, activates interpretation and execution of the code written in the shell
+    
 Back End:
   - Keyword Identifier Module: identifies the keywords that the user types in, such as "delimeter" or "for loop"
   - Change Keyword Color Module: highlights the keywords in specific colors when the keyword is typed and identified 
