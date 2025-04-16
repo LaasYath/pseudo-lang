@@ -1,4 +1,4 @@
-# pseudocode-lang
+# pseudo-lang
 Pseudocode based programming language to make coding easier.
 
 ## Goals
