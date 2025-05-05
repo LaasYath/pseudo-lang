@@ -1,0 +1,485 @@
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, Alert, Dimensions, ScrollView } from 'react-native';
+import Constants from 'expo-constants';
+
+let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get('window').width;
+
+export default class App extends Component {
+    state= {
+        startDisplay: 'block',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+
+        accounts: [
+            {
+                name: 'Username1',
+                pfp: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png'
+            }
+        ],
+
+        loginUsername: 'Username',
+        loginPassword: 'Password',
+        signUpUsername: 'Username',
+        signUpEmail: 'Email',
+        signUpPassword: 'Password',
+        signUpConfirmPassword: 'Confirm Password',
+        authCode: 'Code'
+    }
+
+    handleLogin1Press = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'block',
+        loginDisplay: 'none',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleSignUpPress = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'block',
+        authenticationDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleAddExistingAccPress = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'block',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleCreateNewAccPress = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'block',
+        authenticationDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleLogin2Press = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'none',
+        codingDisplay: 'block',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleSignUpPress = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'block',
+        loginDisplay: 'none',
+        codingDisplay: 'none',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        loginDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleUserPress = () => this.setState(state =>({
+        startDisplay: 'none',
+        accountsDisplay: 'none',
+        loginDisplay: 'none',
+        signUpDisplay: 'none',
+        authenticationDisplay: 'none',
+        loginDisplay: 'none',
+        codingDisplay: 'block',
+        shellDisplay: 'none',
+        consoleDisplay: 'none',
+        projectsDisplay: 'none',
+        loginDisplay: 'none',
+        profileDisplay: 'none',
+    }))
+
+    handleLoginUsernameInput = loginUsername => {
+        this.setState({ loginUsername });
+    };
+    
+    handleLoginPasswordInput = loginPassword => {
+        this.setState({ loginPassword });
+    };
+    
+    handleSignUpUsernameInput = signUpUsername => {
+        this.setState({ signUpUsername });
+    };
+    
+    handleSignUpEmailInput = signUpEmail => {
+        this.setState({ signUpEmail });
+    };
+    
+    handleSignUpPasswordInput = signUpPassword => {
+        this.setState({ signUpPassword });
+    };
+    
+    handleSignUpConfirmPasswordInput = signUpConfirmPassword => {
+        this.setState({ signUpConfirmPassword });
+    };
+    
+    handleAuthCodePasswordInput = authCode => {
+        this.setState({ authCode });
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <View style={{display: this.state.startDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.titleText}>
+                            pseudo-lang
+                        </Text>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleLogin1Press}
+                        >
+                            <View style={styles.button1}>
+                                <Text style={styles.buttonText}>
+                                    Login
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleCreateNewAccPress}
+                        >
+                            <View style={styles.button1}>
+                                <Text style={styles.buttonText}>
+                                    Sign Up
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                
+                
+                <View style={{display: this.state.accountsDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.titleText}>
+                            Accounts
+                        </Text>
+                        
+                        <View style={styles.accountsContainer}>
+                            <ScrollView>
+                                {this.state.accounts.map((user) => (
+                                    <TouchableHighlight
+                                        onPress={this.handleUserPress}
+                                    >
+                                        <View style={styles.userContainer}>
+                                            <Image
+                                                source={{ uri: user.pfp }}
+                                                style={{ height: deviceHeight / 18, width: deviceHeight / 18, marginLeft: 20, marginRight: 30 }}
+                                            />
+                                        
+                                            <Text style={styles.grayText}>
+                                                {user.name}
+                                            </Text>
+                                        </View>
+                                    </TouchableHighlight>
+                                ))}
+                                </ScrollView>
+                        </View>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleAddExistingAccPress}
+                        >
+                            <View style={styles.button2}>
+                                <Text style={styles.buttonText}>
+                                    Add Existing Account
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleCreateNewAccPress}
+                        >
+                            <View style={styles.button2}>
+                                <Text style={styles.buttonText}>
+                                    Create New Account
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                
+                <View style={{display: this.state.loginDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.titleText}>
+                            Login
+                        </Text>
+                        
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.loginUsername}
+                                onChangeText={this.handleLoginUsernameInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.loginPassword}
+                                onChangeText={this.handleLoginPasswordInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleLogin2Press}
+                        >
+                            <View style={styles.button1}>
+                                <Text style={styles.buttonText}>
+                                    Login
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                        
+                    </View>
+                </View>
+                
+                <View style={{display: this.state.signUpDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.titleText}>
+                            Sign Up
+                        </Text>
+                        
+                        <Image
+                            source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png' }}
+                            style={{ height: deviceHeight / 15, width: deviceHeight / 15 }}
+                        />
+                        
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.signUpUsername}
+                                onChangeText={this.handlesignUpUsernameInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.signUpEmail}
+                                onChangeText={this.handlesignUpEmailInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.signUpPassword}
+                                onChangeText={this.handlesignUpPasswordInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.signUpConfirmPassword}
+                                onChangeText={this.handlesignUpConsirmPasswordInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        
+                        
+                        <TouchableHighlight
+                            onPress={this.handleSignUpPress}
+                        >
+                            <View style={styles.button1}>
+                                <Text style={styles.buttonText}>
+                                    Sign Up
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                        
+                    </View>
+                </View>
+                
+                <View style={{display: this.state.authenticationDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.titleText2}>
+                            Enable Two-Factor Authentication
+                        </Text>
+                        <Text style={styles.authText}>
+                            Please enter the verification code that has been sent to your email
+                        </Text>
+                        
+                         <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.authCode}
+                                onChangeText={this.handleAuthCodeInput}
+                                style={styles.grayText}
+                            />
+                        </View>
+                        
+                        <TouchableHighlight
+                            onPress={this.handleLogin1Press}
+                        >
+                            <View style={styles.button1}>
+                                <Text style={styles.buttonText}>
+                                    Continue
+                                </Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                
+                <View style={{display: this.state.codingDisplay}}>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.headerContainer}>
+                            
+                            <Image
+                                source={{ uri: this.state.accounts[0].pfp }}
+                                style={{ height: deviceHeight / 30, width: deviceHeight / 30 }}
+                            />
+                            
+                            
+                            <TouchableHighlight
+                                onPress={() => {
+                                    alert('Alert Message!')
+                                }}
+                            >
+                                
+                                <View style={styles.projectsButton}>
+                                    <Text style={styles.projectsButtonText}>
+                                        Projects
+                                    </Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </View>
+                
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        height: deviceHeight,
+        width: deviceWidth,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#1d3557',
+    },
+    contentContainer: {
+        height: 14 * deviceHeight / 15,
+        width: 16 * deviceWidth / 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button1: {
+        backgroundColor: '#a8dadc',
+        height: deviceHeight / 10,
+        width: 3 * deviceWidth / 5,
+        borderRadius: 15,
+        marginTop: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button2: {
+        backgroundColor: '#a8dadc',
+        height: deviceHeight / 10,
+        width: 4 * deviceWidth / 5,
+        borderRadius: 15,
+        marginTop: 17,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    accountsContainer: {
+        height: deviceHeight / 4,
+        width: 4 * deviceWidth / 5,
+        backgroundColor: 'white',
+        borderRadius: 15
+    },
+    userContainer: {
+        height: deviceHeight / 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    inputContainer: {
+        height: deviceHeight / 10,
+        width: 4 * deviceWidth / 5,
+        backgroundColor: 'white',
+        borderRadius: 15,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginTop: 15
+    },
+    headerContainer: {
+        height: deviceHeight / 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    titleText: {
+        color: 'white',
+        fontFamily: 'fira code',
+        fontWeight: 'bold',
+        fontSize: deviceHeight / 13,
+        marginBottom: 10,
+    },
+    titleText2: {
+        color: 'white',
+        fontFamily: 'fira code',
+        fontWeight: 'bold',
+        fontSize: deviceHeight / 20,
+        textAlign: 'center',
+        marginBottom: 10,   
+    },
+    buttonText: {
+        color: '#457b9d',
+        fontFamily: 'fira code',
+        fontSize: deviceHeight / 24,
+        textAlign: 'center',
+    },
+    grayText: {
+        color: '#778da9',
+        fontFamily: 'fira code',
+        fontSize: deviceHeight / 28,
+        marginLeft: 10,
+    },
+    authText: {
+        color: 'white',
+        fontFamily: 'fira code',
+        fontSize: deviceHeight / 30,
+        textAlign: 'center',
+        marginBottom: 10, 
+    }
+    
+    
+});
