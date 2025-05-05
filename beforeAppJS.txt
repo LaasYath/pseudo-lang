@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, StyleSheet, Image, TextInput, ImageBackground, TouchableHighlight, Alert, Dimensions, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
+import Parse from 'parse/react-native.js';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
+
+Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
+Parse.serverURL = 'https://parseapi.back4app.com/'
 
 export default class App extends Component {
     state= {
