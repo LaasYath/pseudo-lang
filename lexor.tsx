@@ -1,6 +1,7 @@
 // Assign [varName] to [value]
 // [ assignToken, id, equalsToken, numToken]
 
+// import * as fs from 'fs'; download deno???
 
 // possible token types in the lang
 export enum TokenType {
@@ -22,7 +23,8 @@ export enum TokenType {
     TypeSpecifier,
     Word,
     OpenParen,
-    CloseParen
+    CloseParen,
+    Value,
 }
 
 
@@ -33,8 +35,22 @@ export interface Token {
 }
 
 
-function token (value: “”, type: TokenType): Token {
+function token (value = "", type: TokenType): Token {
     return {value, type};
+}
+
+function isAlpha (src: string) {
+    return src.toUpperCase() != src.toLowerCase(); //checks that word contains letters (ints won't change cases, letters will)
+}
+
+function isSkippable (str: string) {
+    return str == '\n' || str == '\t';
+}
+
+function isInt (src: string) {
+   const regex = new RegExp(/^(0|[1-9][0-9]*)$/); //constructor equals runtime compilation
+   let test = regex.test(src);
+    return test;
 }
 
 
@@ -49,12 +65,12 @@ export function tokenize (sourceCode: string): Token[] {
 
         if (src[0] == "Assign") {
             tokens.push(token(src.shift(), TokenType.Assign));
-		if (src.length > 1) {
-			tokens.push(token.src.shift(), TokenType.Id));
-		}
+            if (src.length > 1) {
+                tokens.push(token(src.shift(), TokenType.Id));
+            }
         } else if (src[0] == "print") {
             tokens.push(token(src.shift(), TokenType.Print));
-        } else if (src[0] == "plus" || src[0] == “minus” || src[0] == “divided-by” || src[0] == “times”) {
+        } else if (src[0] == "plus" || src[0] == "minus" || src[0] == "divided-by" || src[0] == "times") {
             tokens.push(token(src.shift(), TokenType.Print));
         } else if (src[0] == "if" || src[0] == "or-if" || src[0] == "else") {
             tokens.push(token(src.shift(), TokenType.Conditional));
@@ -74,6 +90,9 @@ export function tokenize (sourceCode: string): Token[] {
             tokens.push(token(src.shift(), TokenType.Range));
         } else if (src[0] == "to") {
             tokens.push(token(src.shift(), TokenType.Equals));
+            if (src.length > 1) {
+                tokens.push(token(src.shift(), TokenType.Value));
+            }
         } else if (src[0] == "equals") {
             tokens.push(token(src.shift(), TokenType.EqualsEquals));
         } else if (src[0] == "of") {
@@ -82,6 +101,13 @@ export function tokenize (sourceCode: string): Token[] {
             tokens.push(token(src.shift(), TokenType.OpenParen));
         } else if (src[0] == ")") {
             tokens.push(token(src.shift(), TokenType.CloseParen));
+        } else {
+            if (isSkippable(src[0])) {
+               src.shift(); //skips the current word (spaces and new lines) 
+            } else {
+                console.log("Unrecognized word found in source: ", src[0]);
+                throw new Error("Unrecognized character, check logs for more info.") //cancels execution
+            }
         }
 
 
@@ -93,4 +119,10 @@ export function tokenize (sourceCode: string): Token[] {
 
 
    return tokens;
+}
+
+// let source = fs.readFileSync('test.txt','utf8');
+let source = "Assign x to 5";
+for (const token of tokenize(source)) {
+    console.log(token);
 }
