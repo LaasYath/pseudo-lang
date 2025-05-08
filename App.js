@@ -4,9 +4,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-import { HomeScreen } from './pages/HomeScreen.js';
-import { LogInScreen } from './pages/LogInScreen.js';
-import { SignUpScreen } from './pages/SignUpScreen.js';
+import { Accounts } from './pages/Accounts.js';
+import { Home } from './pages/Home.js';
+import { LogIn } from './pages/LogIn.js';
+import { SignUp } from './pages/SignUp.js';
+import { Start } from './pages/Start.js';
 
 export default function App() {
   return (
@@ -14,10 +16,12 @@ export default function App() {
 
       <NavigationContainer>
         {/* inital route = default page */}
-        <Stack.Navigator initialRouteName='Log In'>
-          <Stack.Screen name="Log In" component={LogInScreen} />
-          <Stack.Screen name="Sign Up" component={SignUpScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} /> 
+        <Stack.Navigator initialRouteName='Start'  screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Start" component={Start} />
+          <Stack.Screen name="Log In" component={LogIn} /> 
+          <Stack.Screen name="Sign Up" component={SignUp} />
+          <Stack.Screen name="Accounts" component={Accounts} />
+          <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
 
