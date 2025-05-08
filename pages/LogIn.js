@@ -24,43 +24,43 @@ export function LogIn({ navigation }) {
       }
 
   return (
-                <View style={styles.container}>
-                    <View style={{display: this.state.loginDisplay}}>
-                                        <View style={styles.contentContainer}>
-                                            <Text style={styles.titleText}>
-                                                Login
-                                            </Text>
+    <View style={styles.container}>
+        <View style={{display: this.state.loginDisplay}}>
+            <View style={styles.contentContainer}>
+                <Text style={styles.titleText}>
+                    Login
+                </Text>
                                             
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={this.state.loginUsername}
-                                                    onChangeText={this.handleLoginUsernameInput}
-                                                    style={styles.grayText}
-                                                />
-                                            </View>
-                                            
-                                            <View style={styles.inputContainer}>
-                                                <TextInput
-                                                    value={this.state.loginPassword}
-                                                    onChangeText={this.handleLoginPasswordInput}
-                                                    style={styles.grayText}
-                                                />
-                                            </View>
-                                            
-                                            <TouchableHighlight
-                                                onPress={() => navigation.replace('Accounts')}
-                                            >
-                                                <View style={styles.button1}>
-                                                    <Text style={styles.buttonText}>
-                                                        Login
-                                                    </Text>
-                                                </View>
-                                            </TouchableHighlight>
-                                            
-                                        </View>
-                                    </View>                   
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.loginUsername}
+                        onChangeText={this.handleLoginUsernameInput}
+                        style={styles.grayText}
+                    />
                 </View>
-            );
+                                            
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.loginPassword}
+                        onChangeText={this.handleLoginPasswordInput}
+                        style={styles.grayText}
+                    />
+                </View>
+                                            
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Home')}
+                >
+                    <View style={styles.button1}>
+                        <Text style={styles.buttonText}>
+                            Login
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+                                            
+            </View>
+        </View>                   
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
