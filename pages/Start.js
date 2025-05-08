@@ -52,36 +52,36 @@ export function Start({ navigation }) {
   };
 
   return (
-                <View style={styles.container}>
-                    <View style={{display: this.state.startDisplay}}>
-                        <View style={styles.contentContainer}>
-                            <Text style={styles.titleText}>
-                                pseudo-lang
-                            </Text>
+    <View style={styles.container}>
+        <View style={{display: this.state.startDisplay}}>
+            <View style={styles.contentContainer}>
+                <Text style={styles.titleText}>
+                    pseudo-lang
+                </Text>
                             
-                            <TouchableHighlight
-                                onPress={() => navigation.replace('Log In')}
-                            >
-                                <View style={styles.button1}>
-                                    <Text style={styles.buttonText}>
-                                        Login
-                                    </Text>
-                                </View>
-                            </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Accounts')}
+                >
+                    <View style={styles.button1}>
+                        <Text style={styles.buttonText}>
+                            Login
+                        </Text>
+                    </View>
+                </TouchableHighlight>
                             
-                            <TouchableHighlight
-                                onPress={() => navigation.replace('Sign Up')}
-                            >
-                                <View style={styles.button1}>
-                                    <Text style={styles.buttonText}>
-                                        Sign Up
-                                    </Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-                    </View>                    
-                </View>
-            );
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Sign Up')}
+                >
+                    <View style={styles.button1}>
+                        <Text style={styles.buttonText}>
+                            Sign Up
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
+        </View>                    
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
