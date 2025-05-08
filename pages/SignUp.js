@@ -24,58 +24,58 @@ state= {
 
   return (
     <View style={{display: this.state.signUpDisplay}}>
-                        <View style={styles.contentContainer}>
-                            <Text style={styles.titleText}>
-                                Sign Up
-                            </Text>
+            <View style={styles.contentContainer}>
+                <Text style={styles.titleText}>
+                    Sign Up
+                </Text>
                             
-                            <Image
-                                source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png' }}
-                                style={{ height: deviceHeight / 15, width: deviceHeight / 15 }}
-                            />
+                <Image
+                    source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png' }}
+                    style={{ height: deviceHeight / 15, width: deviceHeight / 15 }}
+                />
                             
-                            <View style={styles.inputContainer}>
-                                <TextInput
-                                    value={this.state.signUpUsername}
-                                    onChangeText={this.handlesignUpUsernameInput}
-                                    style={styles.grayText}
-                                />
-                            </View>
-                            <View style={styles.inputContainer}>
-                                <TextInput
-                                    value={this.state.signUpEmail}
-                                    onChangeText={this.handlesignUpEmailInput}
-                                    style={styles.grayText}
-                                />
-                            </View>
-                            <View style={styles.inputContainer}>
-                                <TextInput
-                                    value={this.state.signUpPassword}
-                                    onChangeText={this.handlesignUpPasswordInput}
-                                    style={styles.grayText}
-                                />
-                            </View>
-                            <View style={styles.inputContainer}>
-                                <TextInput
-                                    value={this.state.signUpConfirmPassword}
-                                    onChangeText={this.handlesignUpConsirmPasswordInput}
-                                    style={styles.grayText}
-                                />
-                            </View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.signUpUsername}
+                        onChangeText={this.handlesignUpUsernameInput}
+                        style={styles.grayText}
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.signUpEmail}
+                        onChangeText={this.handlesignUpEmailInput}
+                        style={styles.grayText}
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.signUpPassword}
+                        onChangeText={this.handlesignUpPasswordInput}
+                        style={styles.grayText}
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={this.state.signUpConfirmPassword}
+                        onChangeText={this.handlesignUpConsirmPasswordInput}
+                        style={styles.grayText}
+                     />
+                </View>
                             
                             
-                            <TouchableHighlight
-                                onPress={this.handleSignUpPress}
-                            >
-                                <View style={styles.button1}>
-                                    <Text style={styles.buttonText}>
-                                        Sign Up
-                                    </Text>
-                                </View>
-                            </TouchableHighlight>
-                            
-                        </View>
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Accounts')}
+                >
+                    <View style={styles.button1}>
+                        <Text style={styles.buttonText}>
+                            Sign Up
+                        </Text>
                     </View>
+                </TouchableHighlight>
+                            
+            </View>
+        </View>
   );
 }
 
