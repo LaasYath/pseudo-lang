@@ -53,53 +53,54 @@ export function Accounts({ navigation }) {
 
     return (
         <View style={{display: this.state.accountsDisplay}}>
-                            <View style={styles.contentContainer}>
-                                <Text style={styles.titleText}>
-                                    Accounts
-                                </Text>
+            <View style={styles.contentContainer}>
+                <Text style={styles.titleText}>
+                    Accounts
+                </Text>
                                 
-                                <View style={styles.accountsContainer}>
-                                    <ScrollView>
-                                        {this.state.accounts.map((user) => (
-                                            <TouchableHighlight
-                                                onPress={this.handleUserPress}
-                                            >
-                                                <View style={styles.userContainer}>
-                                                    <Image
-                                                        source={{ uri: user.pfp }}
-                                                        style={{ height: deviceHeight / 18, width: deviceHeight / 18, marginLeft: 20, marginRight: 30 }}
-                                                    />
+                <View style={styles.accountsContainer}>
+                    <ScrollView>
+                        {this.state.accounts.map((user, i) => (
+                            <TouchableHighlight
+                                key={user.id || i}
+                                onPress={() => navigation.replace('Home')}
+                            >
+                                <View style={styles.userContainer}>
+                                    <Image
+                                        source={{ uri: user.pfp }}
+                                        style={{ height: deviceHeight / 18, width: deviceHeight / 18, marginLeft: 20, marginRight: 30 }}
+                                    />
                                                 
-                                                    <Text style={styles.grayText}>
-                                                        {user.name}
-                                                    </Text>
-                                                </View>
-                                            </TouchableHighlight>
-                                        ))}
-                                        </ScrollView>
+                                    <Text style={styles.grayText}>
+                                        {user.name}
+                                    </Text>
                                 </View>
+                            </TouchableHighlight>
+                        ))}
+                        </ScrollView>
+                </View>
                                 
-                                <TouchableHighlight
-                                    onPress={this.handleAddExistingAccPress}
-                                >
-                                    <View style={styles.button2}>
-                                        <Text style={styles.buttonText}>
-                                            Add Existing Account
-                                        </Text>
-                                    </View>
-                                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Log In')}
+                >
+                    <View style={styles.button2}>
+                        <Text style={styles.buttonText}>
+                            Add Existing Account
+                        </Text>
+                    </View>
+                </TouchableHighlight>
                                 
-                                <TouchableHighlight
-                                    onPress={this.handleCreateNewAccPress}
-                                >
-                                    <View style={styles.button2}>
-                                        <Text style={styles.buttonText}>
-                                            Create New Account
-                                        </Text>
-                                    </View>
-                                </TouchableHighlight>
-                            </View>
-                        </View>
+                <TouchableHighlight
+                    onPress={() => navigation.replace('Sign Up')}
+                >
+                    <View style={styles.button2}>
+                        <Text style={styles.buttonText}>
+                            Create New Account
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
+        </View>
     );
 }
 
