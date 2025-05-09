@@ -1,7 +1,6 @@
+// SAMPLE LANG EXAMPLE
 // Assign [varName] to [value]
 // [ assignToken, id, equalsToken, numToken]
-
-// import * as fs from 'fs'; download deno???
 
 // possible token types in the lang
 export enum TokenType {
@@ -34,19 +33,22 @@ export interface Token {
     type: TokenType,
 }
 
-
+// token function
 function token (value = "", type: TokenType): Token {
     return {value, type};
 }
 
+// checks if the src value is a word (only made of letters)
 function isAlpha (src: string) {
     return src.toUpperCase() != src.toLowerCase(); //checks that word contains letters (ints won't change cases, letters will)
 }
 
+// check if the src value is a new line/tab
 function isSkippable (str: string) {
     return str == '\n' || str == '\t';
 }
 
+// check if the src value is a number with regex
 function isInt (src: string) {
    const regex = new RegExp(/^(0|[1-9][0-9]*)$/); //constructor equals runtime compilation
    let test = regex.test(src);
@@ -54,7 +56,7 @@ function isInt (src: string) {
 }
 
 
-// turns code into token array
+// adds user written code into token array
 export function tokenize (sourceCode: string): Token[] {
    const tokens = new Array<Token>();
    const src = sourceCode.split(" ");
@@ -65,6 +67,7 @@ export function tokenize (sourceCode: string): Token[] {
 
         if (src[0] == "Assign") {
             tokens.push(token(src.shift(), TokenType.Assign));
+            // automatically (if word exists) assigns the word after the keyword assign to a variable id
             if (src.length > 1) {
                 tokens.push(token(src.shift(), TokenType.Id));
             }
@@ -89,8 +92,9 @@ export function tokenize (sourceCode: string): Token[] {
         } else if (src[0] == "through") {
             tokens.push(token(src.shift(), TokenType.Range));
         } else if (src[0] == "to") {
-            tokens.push(token(src.shift(), TokenType.Equals));
+            //if key word is for equating values to vars, automatically assigns the next item to be the value token
             if (src.length > 1) {
+                tokens.push(token(src.shift(), TokenType.Equals));
                 tokens.push(token(src.shift(), TokenType.Value));
             }
         } else if (src[0] == "equals") {
@@ -102,11 +106,12 @@ export function tokenize (sourceCode: string): Token[] {
         } else if (src[0] == ")") {
             tokens.push(token(src.shift(), TokenType.CloseParen));
         } else {
+            // if skippable, doesn't add a token
             if (isSkippable(src[0])) {
-               src.shift(); //skips the current word (spaces and new lines) 
-            } else {
+               src.shift(); 
+            } else { //for errors errors of improper code
                 console.log("Unrecognized word found in source: ", src[0]);
-                throw new Error("Unrecognized character, check logs for more info.") //cancels execution
+                src.shift();
             }
         }
 
@@ -117,12 +122,10 @@ export function tokenize (sourceCode: string): Token[] {
 
    }
 
-
+   // returns token array
    return tokens;
 }
 
 // let source = fs.readFileSync('test.txt','utf8');
-let source = "Assign x to 5";
-for (const token of tokenize(source)) {
-    console.log(token);
-}
+let source : string = "Assign x to 5";
+console.log(tokenize(source));
