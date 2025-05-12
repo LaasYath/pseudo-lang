@@ -54,3 +54,6 @@ Back End:
 &copy; 2025 Adya Bharadwaj, Crystal Wang, Laasya Yatham. All rights reserved.
 
 [Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+[Personal Reference Back4App Accounts](https://drive.google.com/file/d/1tl7M7oY55HGMf1bbt9pbQQmOpnXIppyo/view?usp=sharing)
+
