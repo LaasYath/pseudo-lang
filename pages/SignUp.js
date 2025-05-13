@@ -81,7 +81,7 @@ state= {
                                 
                                 
                 <TouchableHighlight
-                    onPress={() => navigation.replace('Accounts')}
+                    onPress={() => navigation.replace('Home')}
                 >
                     <View style={styles.button1}>
                         <Text style={styles.buttonText}>
