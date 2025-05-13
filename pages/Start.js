@@ -49,10 +49,6 @@ export function Start({ navigation }) {
       this.setState({ signUpConfirmPassword });
   };
 
-  handleAuthCodePasswordInput = authCode => {
-      this.setState({ authCode });
-  };
-
   return (
     <View style={styles.container}>
         <View style={{display: this.state.startDisplay}}>
