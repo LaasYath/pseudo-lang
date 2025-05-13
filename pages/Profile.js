@@ -43,6 +43,16 @@ export function Profile({ navigation }) {
                             Projects: {this.state.accounts[0].numProjects}
                         </Text>
                     </View>
+
+                    <TouchableHighlight
+                        onPress={() => navigation.replace('Start')}
+                    >
+                        <View style={styles.button1}>
+                            <Text style={styles.buttonText}>
+                                Sign Out
+                            </Text>
+                        </View>
+                    </TouchableHighlight>
                 </View>
             </View>
         </View>
@@ -182,7 +192,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 10,
     },
     profileContainer: {
-        height: 6 * deviceHeight / 10,
+        height: 5 * deviceHeight / 10,
         width: 3 * deviceWidth / 4,
         backgroundColor: '#034774',
         justifyContent: 'space-around',
