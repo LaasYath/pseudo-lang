@@ -1,14 +1,27 @@
-import React from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-//import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useState } from 'react';
+import { Dimensions, Image, StyleSheet, Text, TouchableHighlight, View, PanResponder } from 'react-native';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
-//const Drawer = createDrawerNavigator();
-
-// successful authentication -> route here
 export function Home({ navigation }) {
+
+  const [shellHeight, setShellHeight] = useState(5 * deviceHeight / 20);
+  const [consoleHeight, setConsoleHeight] = useState(5 * deviceHeight / 20);
+  const maxHeight = 5 * deviceHeight / 20;
+
+  const panResponder = (initialHeight, setHeight) => {
+    return PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (e, gestureState) => {
+         setHeight(Math.max(deviceHeight / 20, Math.min(initialHeight + gestureState.dy, maxHeight)))
+      },
+    });
+  };
+
+  const shellPanResponder = panResponder(shellHeight, setShellHeight);
+  const consolePanResponder = panResponder(consoleHeight, setConsoleHeight);
+
   return (
     <View style={styles.container}>
       <View style={{display: this.state.homeDisplay}}>
@@ -93,9 +106,10 @@ export function Home({ navigation }) {
                 </TouchableHighlight>
               </View>
                                   
-              <View style={styles.codeContainer}>
+              <View style={[styles.codeContainer, { height: shellHeight }]}
+                {...shellPanResponder.panHandlers}>
                 <Text style={styles.paragraph}>
-                                      
+                   Insert Code                   
                 </Text>
               </View>
             </View>
@@ -122,7 +136,8 @@ export function Home({ navigation }) {
               </TouchableHighlight>
             </View>
                                   
-            <View style={styles.codeContainer}>
+            <View style={[styles.codeContainer, { height: consoleHeight}]} 
+            {...consolePanResponder.panHandlers}>
               <Text style={styles.paragraph}>
                                       
               </Text>
