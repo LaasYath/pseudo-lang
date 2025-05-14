@@ -6,25 +6,40 @@ let deviceWidth = Dimensions.get('window').width;
 
 export function Home({ navigation }) {
 
-  const [shellHeight, setShellHeight] = useState(5 * deviceHeight / 20);
-  const [consoleHeight, setConsoleHeight] = useState(5 * deviceHeight / 20);
-  const maxHeight = 5 * deviceHeight / 20;
+  gap = deviceHeight / 20;
+  [shellHeight, setShellHeight] = useState(6 * deviceHeight / 20);
+  minHeight = deviceHeight / 10;
+  maxHeight = 7 * deviceHeight / 10 - deviceHeight / 20 - gap;
+  consoleHeight = maxHeight - shellHeight + gap;
 
-  const panResponder = (initialHeight, setHeight) => {
+  panResponder = (initialHeight, setHeight) => {
     return PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (e, gestureState) => {
+        return Math.abs(gestureState.dy) > 5;
+      },
       onPanResponderMove: (e, gestureState) => {
-         setHeight(Math.max(deviceHeight / 20, Math.min(initialHeight + gestureState.dy, maxHeight)))
+        setHeight(Math.max(minHeight, Math.min(initialHeight + gestureState.dy, maxHeight)));
       },
     });
   };
+  
+  shellPanResponder = panResponder(shellHeight, setShellHeight);
 
-  const shellPanResponder = panResponder(shellHeight, setShellHeight);
-  const consolePanResponder = panResponder(consoleHeight, setConsoleHeight);
+  /*
+  handleCloseWindowPress = (window) => {
+    if (window == 'shell') {
+      setShellHeight(minHeight);
+    } else if (window == 'console') {
+      setShellHeight(maxHeight);
+    }
+  };
+  */
+
+
 
   return (
     <View style={styles.container}>
-      <View style={{display: this.state.homeDisplay}}>
+      <View style={{ display: 'flex' }}>
         <View style={styles.contentContainer}>
           <View style={styles.headerContainer}>  
 
@@ -84,39 +99,30 @@ export function Home({ navigation }) {
             </TouchableHighlight>
           </View>
                           
-          <View style={{height: 7 * deviceHeight / 10}}>
-                          
-            <View style={styles.homeContainer}>
+          <View style={{ height: 7 * deviceHeight / 10}}>
+            <View style={[styles.homeContainer, { height: shellHeight, marginBottom: gap }]} 
+            {...shellPanResponder.panHandlers}>
+
               <View style={styles.titleBarContainer}>
-                                  
-                <Text style={styles.titleBarText}>
-                  Shell
-                </Text>
-                                      
-                <TouchableHighlight
+                <Text style={styles.titleBarText}>Shell</Text>
+                <TouchableHighlight 
                   onPress={() => {
                     alert('Alert Message!')
-                  }}
-                >
-                  <View>
-                    <Text style={{color: '#ff3131', marginRight: 20}}>
-                      X
-                    </Text>
-                  </View>
+                  }}>
+                    <View>
+                      <Text style={{ color: '#ff3131', marginRight: 20 }}>
+                        X
+                      </Text>
+                    </View>
                 </TouchableHighlight>
               </View>
-                                  
-              <View style={[styles.codeContainer, { height: shellHeight }]}
-                {...shellPanResponder.panHandlers}>
-                <Text style={styles.paragraph}>
-                   Insert Code                   
-                </Text>
+
+              <View style={styles.codeContainer}>
+                <Text style={styles.paragraph}>Insert Code</Text>
               </View>
             </View>
-                              
-                              
-                              
-            <View style={styles.homeContainer}>
+
+            <View style={[styles.homeContainer, { height: consoleHeight }]}>
               <View style={styles.titleBarContainer}>
                                   
                 <Text style={styles.titleBarText}>
@@ -125,8 +131,8 @@ export function Home({ navigation }) {
                                       
               <TouchableHighlight
                 onPress={() => {
-                  alert('Alert Message!')
-                }}
+                alert('Alert Message!')
+              }}
               >
                 <View>
                   <Text style={{color: '#ff3131', marginRight: 20}}>
@@ -136,20 +142,18 @@ export function Home({ navigation }) {
               </TouchableHighlight>
             </View>
                                   
-            <View style={[styles.codeContainer, { height: consoleHeight}]} 
-            {...consolePanResponder.panHandlers}>
+            <View style={styles.codeContainer}>
               <Text style={styles.paragraph}>
                                       
               </Text>
             </View>
           </View>
-                          
+
+
+          </View>
         </View>
-                          
       </View>
     </View>
-  </View>
-
   );
 }
 
@@ -265,7 +269,6 @@ const styles = StyleSheet.create({
     homeContainer: {
         height: 6 * deviceHeight / 20,
         width: 16 * deviceWidth / 18,
-        marginBottom: 10
     },
     titleBarContainer: {
         height: deviceHeight / 20,
@@ -283,6 +286,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#778da9',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
+        flex: 1
     },
     profileContainer: {
         height: 6 * deviceHeight / 10,
