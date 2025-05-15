@@ -30,7 +30,7 @@ export function LogIn({ navigation }) {
         <View style={{display: this.state.loginDisplay}}>
             <View style={styles.backButtonContainer}>
                     <TouchableHighlight
-                        onPress={() => navigation.replace('Accounts')}
+                        onPress={() => navigation.replace('Start')}
                     >
                                 
                         <View style={styles.backButton}>
