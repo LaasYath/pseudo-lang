@@ -6,48 +6,7 @@ let deviceWidth = Dimensions.get('window').width;
 
 export function Start({ navigation }) {
 
-  state= {
-    accounts: [
-        {
-            name: 'Username1',
-            pfp: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png',
-            email: 'email@gmail.com',
-            numProjects: 2
-        }
-    ],
-
-    loginUsername: 'Username',
-    loginPassword: 'Password',
-    signUpUsername: 'Username',
-    signUpEmail: 'Email',
-    signUpPassword: 'Password',
-    signUpConfirmPassword: 'Confirm Password',
-    authCode: 'Code'
-  }
-
-  handleLoginUsernameInput = loginUsername => {
-    this.setState({ loginUsername });
-  };
-
-  handleLoginPasswordInput = loginPassword => {
-      this.setState({ loginPassword });
-  };
-
-  handleSignUpUsernameInput = signUpUsername => {
-      this.setState({ signUpUsername });
-  };
-
-  handleSignUpEmailInput = signUpEmail => {
-      this.setState({ signUpEmail });
-  };
-
-  handleSignUpPasswordInput = signUpPassword => {
-      this.setState({ signUpPassword });
-  };
-
-  handleSignUpConfirmPasswordInput = signUpConfirmPassword => {
-      this.setState({ signUpConfirmPassword });
-  };
+  const [startDisplay, setStartDisplay] = useState('flex');
 
   return (
     <View style={styles.container}>
