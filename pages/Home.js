@@ -328,9 +328,8 @@ const styles = StyleSheet.create({
     codeButtonsContainer: {
         height: deviceHeight / 9,
         width: 16 * deviceWidth / 18,
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
     saveButton: {
         height: deviceHeight / 20,
