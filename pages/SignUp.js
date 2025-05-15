@@ -40,57 +40,54 @@ state= {
                     </TouchableHighlight>
                 </View>
 
-            <View style={styles.contentContainer}>
-                <Text style={styles.titleText}>
-                    Sign Up
-                </Text>
-                                
-                <Image
-                    source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png' }}
-                    style={{ height: deviceHeight / 15, width: deviceHeight / 15 }}
-                />
-                                
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.signUpUsername}
-                        onChangeText={this.handlesignUpUsernameInput}
-                        style={styles.grayText}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.signUpEmail}
-                        onChangeText={this.handlesignUpEmailInput}
-                        style={styles.grayText}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.signUpPassword}
-                        onChangeText={this.handlesignUpPasswordInput}
-                        style={styles.grayText}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.signUpConfirmPassword}
-                        onChangeText={this.handlesignUpConsirmPasswordInput}
-                        style={styles.grayText}
-                    />
-                </View>
-                                
-                                
-                <TouchableHighlight
-                    onPress={() => navigation.replace('Home')}
-                >
-                    <View style={styles.button1}>
-                        <Text style={styles.buttonText}>
-                            Sign Up
-                        </Text>
-                    </View>
-                </TouchableHighlight>
-                                
-            </View>
+            <Image
+        source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/480px-Default_pfp.svg.png' }}
+        style={{ height: deviceHeight / 15, width: deviceHeight / 15 }}
+      />
+    
+      <View style={styles.inputContainer}>
+      {errorMessage ? (
+      <Text style={{ color: 'red', marginBottom: 10 }}>{errorMessage}</Text>
+    ) : null}
+
+        <TextInput
+          value={signUpUsername}
+          onChangeText={setSignUpUsername}
+          placeholder="Username"
+          style={styles.grayText}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={signUpEmail}
+          onChangeText={setSignUpEmail}
+          placeholder="Email"
+          style={styles.grayText}
+          keyboardType="email-address"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={signUpPassword}
+          onChangeText={setSignUpPassword}
+          placeholder="Password"
+          secureTextEntry
+          style={styles.grayText}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={signUpConfirmPassword}
+          onChangeText={setSignUpConfirmPassword}
+          placeholder="Confirm Password"
+          secureTextEntry
+          style={styles.grayText}
+        />
+      </View>
+
+      <TouchableHighlight onPress={handleSignUp}>
+        <View style={styles.button1}>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </View>
     </View>
   );
