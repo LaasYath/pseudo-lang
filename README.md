@@ -30,12 +30,9 @@ Front End:
   - Console Screen: the closable output window where the user is able to see their executed code
   - Run Button: on press, activates interpretation and execution of the code written in the shell
   - Sign up (popup, multifactor authentication) and Login screen for different users
-  - Projects sidebar:
-      - Open project, Create project, remove project options.
     
 Back End:
   - Keyword Identifier Module: identifies the keywords that the user types in, such as "delimeter" or "for loop"
-  - Change Keyword Color Module: highlights the keywords in specific colors when the keyword is typed and identified 
   - Interpreter Module: interprets the pseudocode
       - Lexer: turns the sequence of characters in the pseudocode into a sequence of tokens
       - Parser: takes the sequence of tokens and produces an abstract syntax tree 
