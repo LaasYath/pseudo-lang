@@ -120,17 +120,7 @@ export function Home({ navigation }) {
           </Modal>
                           
           <View style={styles.codeButtonsContainer}>
-            <TouchableHighlight
-              onPress={() => {
-                alert('Alert Message!')
-              }}
-            >
-              <View style={styles.saveButton}>
-                <Text style={styles.buttonText2}>
-                  Save
-                </Text>
-              </View>
-            </TouchableHighlight>
+            
                               
             <TouchableHighlight
               onPress={() => {
