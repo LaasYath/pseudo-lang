@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Dimensions, Image, StyleSheet, Text, TouchableHighlight, View, PanResponder } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableHighlight, View, PanResponder, ScrollView, TextInput, Modal} from 'react-native';
 
 let deviceHeight = Dimensions.get('window').height;
 let deviceWidth = Dimensions.get('window').width;
 
 export function Home({ navigation }) {
 
+  [shellCode, setShellCode] = useState("Insert Code");
+  
   gap = deviceHeight / 20;
   [shellHeight, setShellHeight] = useState(6 * deviceHeight / 20);
   minHeight = deviceHeight / 10;
   maxHeight = 7 * deviceHeight / 10 - deviceHeight / 20 - gap;
   consoleHeight = maxHeight - shellHeight + gap;
+  
+  const [modalVisible, setModalVisible] = useState(false);
 
   panResponder = (initialHeight, setHeight) => {
     return PanResponder.create({
@@ -25,15 +29,18 @@ export function Home({ navigation }) {
   
   shellPanResponder = panResponder(shellHeight, setShellHeight);
 
-  /*
+  
   handleCloseWindowPress = (window) => {
     if (window == 'shell') {
-      setShellHeight(minHeight);
+      setShellHeight(deviceHeight / 10);
     } else if (window == 'console') {
       setShellHeight(maxHeight);
     }
   };
-  */
+  
+  handleShellCodeInput = (shellCode) => {
+    setShellCode(shellCode);
+  }
 
 
 
@@ -60,9 +67,7 @@ export function Home({ navigation }) {
                               
                               
             <TouchableHighlight
-              onPress={() => {
-                alert('Alert Message!')
-              }}
+              onPress={() => {setModalVisible(true)}}
             >
                                   
               <View style={styles.projectsButton}>
@@ -72,6 +77,47 @@ export function Home({ navigation }) {
               </View>
             </TouchableHighlight>
           </View>
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalBackground}>
+              <View style={styles.modalContainer}>
+                <View style={styles.projectsHeader}>
+                  <Text style={{color: '#457b9d', fontFamily: 'fira code', fontSize: deviceHeight / 35, marginTop: 20, marginLeft: 10}}>
+                    Projects
+                  </Text>
+
+                  <TouchableHighlight
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Text style={{color: '#ff3131', marginTop: 20, marginRight: 10}}>
+                      X
+                    </Text>
+                  </TouchableHighlight>
+                </View>
+                <ScrollView>
+                <View style={styles.projectsList}>
+                  
+                    <View style={styles.projectsContainer}>
+                      <Text style={styles.projectText}>
+                        Project 1
+                      </Text>
+                    </View>
+                    <View style={styles.projectsContainer}>
+                      <Text style={styles.projectText}>
+                        Project 2
+                      </Text>
+                    </View>
+                  
+                </View>
+                </ScrollView>
+              </View>
+            </View>
+          </Modal>
                           
           <View style={styles.codeButtonsContainer}>
             <TouchableHighlight
@@ -104,11 +150,11 @@ export function Home({ navigation }) {
             {...shellPanResponder.panHandlers}>
 
               <View style={styles.titleBarContainer}>
-                <Text style={styles.titleBarText}>Shell</Text>
+                <Text style={styles.titleBarText}>
+                  Shell
+                </Text>
                 <TouchableHighlight 
-                  onPress={() => {
-                    alert('Alert Message!')
-                  }}>
+                  onPress={() => handleCloseWindowPress('shell')}>
                     <View>
                       <Text style={{ color: '#ff3131', marginRight: 20 }}>
                         X
@@ -118,7 +164,13 @@ export function Home({ navigation }) {
               </View>
 
               <View style={styles.codeContainer}>
-                <Text style={styles.paragraph}>Insert Code</Text>
+                <ScrollView>
+                    <TextInput
+                      value={shellCode}
+                      onChangeText={handleShellCodeInput}
+                      style={styles.codeText}
+                    />
+                </ScrollView>
               </View>
             </View>
 
@@ -130,9 +182,7 @@ export function Home({ navigation }) {
                 </Text>
                                       
               <TouchableHighlight
-                onPress={() => {
-                alert('Alert Message!')
-              }}
+                onPress={() => handleCloseWindowPress('console')}
               >
                 <View>
                   <Text style={{color: '#ff3131', marginRight: 20}}>
@@ -143,9 +193,11 @@ export function Home({ navigation }) {
             </View>
                                   
             <View style={styles.codeContainer}>
-              <Text style={styles.paragraph}>
-                                      
-              </Text>
+              <ScrollView>
+                <Text style={styles.codeText}>
+                  Output goes here                      
+                </Text>
+              </ScrollView>
             </View>
           </View>
 
@@ -243,6 +295,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    modalBackground: {
+        height: deviceHeight,
+        width: deviceWidth,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalContainer: {
+        height: 15 * deviceHeight / 20,
+        width: 16 * deviceWidth / 18,
+        backgroundColor: '#034774',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    projectsHeader: {
+        height: 2 * deviceHeight / 20, 
+        width: 16 * deviceWidth / 18,
+        flexDirection: 'row', 
+        alignItmes: 'center', 
+        justifyContent: 'space-between', 
+    },
+    projectsList: {
+        height: 12 * deviceHeight / 20,
+        width: 14 * deviceWidth / 18,
+        backgroundColor: '#457b9d',
+        alignItems: 'center',
+    },
+    projectsContainer: {
+        height: 2 * deviceHeight / 20,
+        width: 12 * deviceWidth / 18,
+        backgroundColor: '#a8dadc',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20
+    },
+    projectText: {
+        color: '#457b9d',
+        fontSize: deviceHeight / 20,
+        fontFamily: 'fira code',
+        textAlign: 'center'
+    },
     codeButtonsContainer: {
         height: deviceHeight / 9,
         width: 16 * deviceWidth / 18,
@@ -318,7 +410,7 @@ const styles = StyleSheet.create({
         color: '#457b9d',
         fontFamily: 'fira code',
         fontWeight: 'bold',
-        fontSize: deviceHeight / 35
+        fontSize: deviceHeight / 38
     },
     projectsButtonText: {
         color: 'white',
@@ -341,5 +433,11 @@ const styles = StyleSheet.create({
         fontFamily: 'fira code',
         fontSize: deviceHeight / 20,
         marginLeft: 10,
+    },
+    codeText: {
+        color: 'black',
+        fontFamily: 'fira code',
+        fontSize: deviceHeight / 37,
+        marginLeft: 10
     }
 });
