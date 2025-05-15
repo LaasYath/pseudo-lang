@@ -39,9 +39,6 @@ export function Profile({ navigation }) {
                         <Text style={styles.profileText}>
                             {this.state.accounts[0].email}
                         </Text>
-                        <Text style={styles.profileText}>
-                            Projects: {this.state.accounts[0].numProjects}
-                        </Text>
                     </View>
 
                     <TouchableHighlight
