@@ -1,5 +1,6 @@
 # pseudo-lang
 Pseudocode based programming language to make coding easier.
+[Project Presentation](https://docs.google.com/presentation/d/1qinqkd70e9p-y4cPj-zb6IAbTlb08lD2yVmdYvX5pLk/edit?usp=sharing)
 
 ## Goals
 The aim of this project is to create a programming language that works like pseudocode. The user will write out their code in human-readable, written english language format. Our application will then execute the user's intended program. 
